@@ -1,0 +1,69 @@
+Copyright 2021 Buzea Alexandru-Mihai-Iulian 321CAb
+
+    After the first homework when Biju tricked his friends in order
+to get the revenge, now Biju wants to evolve and prove that he can become one
+of the best hackers the world has ever seen. Obviously, he cannot become
+what he really wants if he does not master x86 32-bit assembly language,
+so he decides to solve some problems in order to prove his "value". But there
+is a problem: Biju does not know x86, so he asked for my help.
+
+------------------------------ TASK 1: ROTP ------------------------------
+
+    He wants to implement the reversed one time pad (he performs the bitwise
+xor operation between his plaintext and a key, but he will firstly reverse
+the key in order to make the cipher look more complicate).
+    I simply used a loop in order to perform the given cipher for each byte
+from the plaintext. In order to calculate the corresponding index from the
+key, I used the stack to retain the total length of the key/plaintext.
+
+------------------------------ TASK 2: AGES ------------------------------
+
+    Biju wants to calculate the ages of his teammates, so he asks my help. I
+saved the current date using global variables and then compared the current
+date to the birth date of each of his teammates. First of all, I check if
+some of his teammates are already born or if they are one year old at most.
+For all other cases (the general case when a teammate has a reasonable age),
+I calculated the age and checked if the respective teammate celebrated his
+birthday this year. If not, I substracted one from their calculated age (for
+example, if the current date is 16 June 2021 and a teammate was born on
+20 July 2001, then his age is 2021 - 2001 - 1 = 19, because he hasn't
+celebrated his birthday this year). In a similar way, I used ecx count
+register to iterate through all birth dates from our array.
+
+---------------------------- TASK 3: COLUMNAR ----------------------------
+
+    Biju wants to implement a more challenging cipher, so he tries to
+implement the columnar cipher. He asks again for my help in order to write
+the implementation in x86, but this time he helps me with a C function that
+returns the position of each letter in the key string after sorting ascending.
+Using the result given by this function, I calculated the letters in the
+given plain text string (called haystack) for the letters whose index are
+congruent to our index from the index array given (modulo l_key, the length
+of the given key). I also used a global variable that helped me into storing
+the current length of the ciphertext (while building it).
+
+----------------------------- TASK 4: CACHE -----------------------------
+
+    Last, but not least, Biju wants to find out more about cache memory and
+how is it used during runtime of a program. He asked me if I can help him
+with a simulation of using cache memory and moving a byte from cache and then
+to a register (this is all a simulation, because the initial memory zone,
+the cache - modeled as a statically allocated matrix and the fake register are
+all stored in the RAM memory). Therefore, I used the given address of the
+memory zone and then calculated its tag and its offset (in order to see if the
+address was already copied in cache memory). I searched for the calculated tag
+in the memory zone and had the following situations:
+
+    -> CACHE HIT: we have already copied the memory zone in the cache and all
+we need to do is to copy the value from the corresponding address from cache
+into the given register.
+    -> CACHE MISS: we did not find the memory zone in the cache, therefore we
+need to copy all bytes with the same tag into the cache at a desired line
+given as parameter. Only after that we need to move the value from the cache
+memory into the given "register".
+
+    After all these challenging problems, Biju had a heart attack. He is now
+in a troubling situation, because he can ascend to heaven only if he solves
+some very nasty problems using x86 assembly (obviously, supervised by some
+Computer Science bosses).
+    To be continued ...
